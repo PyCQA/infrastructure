@@ -1,0 +1,12 @@
+jenkins-controller
+jenkins-build00
+
+[ci-all]
+jenkins-controller
+jenkins-build00
+
+[ci-controllers]
+jenkins-controller
+
+[ci-build-nodes]
+jenkins-build00

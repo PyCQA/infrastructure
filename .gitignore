@@ -1,4 +1,3 @@
 .tox/*
 # For when playbooks fail
 *.retry
-inventory*
