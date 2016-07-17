@@ -13,9 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Test SSH connectivity
-  hosts: ci-all
-  tasks:
-    - name: Print something from the server
-      debug:
-        msg: "Hello from {{ inventory_hostname }}"
+apache_server_admin: graffatcolmingov@gmail.com
+apache_server_name: ci.pycqa.org
+python_versions:
+  - python2.6
+  - python2.7
+  - python3.2
+  - python3.3
+  - python3.4
+  - python3.5
+  - pypy

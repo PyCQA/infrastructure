@@ -13,9 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Test SSH connectivity
-  hosts: ci-all
-  tasks:
-    - name: Print something from the server
-      debug:
-        msg: "Hello from {{ inventory_hostname }}"
+- name: "Upgrade Python"
+  apt:
+    state: present
+    upgrade: yes
+    name: "{{ item }}"
+  with_items: "{{ python_versions }}"
+  tags:
+    - jenkins-controller-upgrade
+    - jenkins-build-upgrade
+    - python-upgrade

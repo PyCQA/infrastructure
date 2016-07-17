@@ -1,0 +1,72 @@
+---
+# Copyright 2016 Ian Cordasco
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: "Install Jenkins Package"
+  apt:
+    state: present
+    name: jenkins
+  tags:
+    - jenkins-controller-install
+
+
+- name: "Install Apache for port 80 forwarding"
+  apt:
+    state: present
+    name: apache2
+  tags:
+    - jenkins-controller-install
+    - apache-install
+
+
+- name: "Add Apache configuration for Jenkins"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - src: "jenkins.conf.j2"
+      dest: "/etc/apache2/sites-available/jenkins.conf"
+  tags:
+    - jenkins-controller-install
+    - apache-install
+
+
+- name: "Update Apache enabled sites"
+  file:
+    src: "/etc/apache2/sites-available/{{ item.name }}"
+    path: "/etc/apache2/sites-enabled/{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items:
+    - name: "jenkins.conf"
+      state: link
+    - name: "000-default.conf"
+      state: absent
+  tags:
+    - jenkins-controller-install
+    - apache-install
+
+
+- name: "Enable Apache 2 modules"
+  apache2_module:
+    state: "{{ item.state }}"
+    name: "{{ item.name }}"
+  with_items:
+    - state: present
+      name: proxy
+    - state: present
+      name: proxy_http
+  notify: "Restart Apache"
+  tags:
+    - jenkins-controller-install
+    - apache-install

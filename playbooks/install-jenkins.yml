@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Test SSH connectivity
-  hosts: ci-all
-  tasks:
-    - name: Print something from the server
-      debug:
-        msg: "Hello from {{ inventory_hostname }}"
+- name: Install Jenkins CI Controller
+  hosts: ci-controllers
+  roles:
+    - role: jenkins
+      controller_only: true
+      upgrading: false

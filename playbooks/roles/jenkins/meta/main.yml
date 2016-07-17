@@ -1,4 +1,3 @@
----
 # Copyright 2016 Ian Cordasco
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,9 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Test SSH connectivity
-  hosts: ci-all
-  tasks:
-    - name: Print something from the server
-      debug:
-        msg: "Hello from {{ inventory_hostname }}"
+galaxy_info:
+  author: Ian Cordasco
+  description: Manage the Jenkins infrastructure for the PyCQA
+  license: Apache2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+  categories: []
+  dependencies: []

@@ -13,9 +13,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Test SSH connectivity
-  hosts: ci-all
-  tasks:
-    - name: Print something from the server
-      debug:
-        msg: "Hello from {{ inventory_hostname }}"
+- name: "Upgrade Jenkins Package"
+  apt:
+    state: present
+    name: jenkins
+    upgrade: yes
+  tags:
+    - jenkins-controller-upgrade
+
+
+- name: "Upgrade Apache"
+  apt:
+    state: present
+    name: apache2
+    upgrade: yes
+  tags:
+    - jenkins-controller-upgrade
+    - apache-upgrade
