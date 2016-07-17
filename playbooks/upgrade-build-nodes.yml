@@ -13,6 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Prepare for upgrade
+  hosts: ci-build-nodes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+
 - name: Upgrade Jenkins Worker Nodes
   hosts: ci-build-nodes
   roles:
