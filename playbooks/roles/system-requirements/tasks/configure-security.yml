@@ -42,16 +42,12 @@
 
 
 - name: Secure Shared Memory
-  lineinfile:
-    dest: /etc/fstab
-    state: present
-    line: "tmpfs     /run/shm    tmpfs     ro,noexec,nosuid        0       0"
-  tags:
-    - security
-
-
-- name: Reload fstab configuration
-  command: "mount -a"
+  mount:
+    state: mounted
+    src: tmpfs
+    name: /run/shm
+    fstype: tmpfs
+    opts: ro,noexec,nosuid
   tags:
     - security
 
