@@ -3,7 +3,7 @@ before_script:
   - apt-get install -y python python-dev
   - curl -O https://bootstrap.pypa.io/get-pip.py
   - python get-pip.py
-  - pip install -r ansible>=2.1.0
+  - pip install tox
 
 linters:
   script:
