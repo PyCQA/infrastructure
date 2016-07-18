@@ -13,7 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- include_vars: "{{ item }}"
+- name: "Conditionally override security_packages variable"
+  include_vars: "{{ item }}"
   with_first_found:
     - files:
         - "{{ ansible_distribution }}_{{ ansible_distribution_version }}.yml"
