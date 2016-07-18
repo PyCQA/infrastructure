@@ -13,10 +13,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Setup Jenkins Worker Nodes
-  hosts: ci-build-nodes
-  roles:
-    - role: jenkins
-      is_controller: false
-      upgrading: false
-    - role: system-requirements
+system_packages:
+  - build-essential
+  - python-dev
+  - libssl-dev
+  - libffi-dev
+  - git
+
+
+security_packages:
+  - fail2ban
+  - ufw
+  - unattended-upgrades
+
+
+allowed_firewall_ports:
+  - 22   # OpenSSH
+  - 80   # HTTP
+  - 443  # HTTPS

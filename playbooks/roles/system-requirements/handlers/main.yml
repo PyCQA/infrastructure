@@ -13,10 +13,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Setup Jenkins Worker Nodes
-  hosts: ci-build-nodes
-  roles:
-    - role: jenkins
-      is_controller: false
-      upgrading: false
-    - role: system-requirements

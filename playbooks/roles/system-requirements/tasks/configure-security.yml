@@ -1,0 +1,70 @@
+---
+# Copyright 2016 Ian Cordasco
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+- name: Install Security Packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ security_packages }}"
+  tags:
+    - security
+
+
+- name: Enable Firewall
+  ufw:
+    state: enabled
+  tags:
+    - security
+    - firewalls
+
+
+- name: Update Firewall Rules
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+  with_items: "{{ allowed_firewall_ports }}"
+  tags:
+    - security
+    - firewalls
+
+
+- name: Secure Shared Memory
+  lineinfile:
+    dest: /etc/fstab
+    state: present
+    line: "tmpfs     /run/shm    tmpfs     ro,noexec,nosuid        0       0"
+  tags:
+    - security
+
+
+- name: Reload fstab configuration
+  command: "mount -a"
+  tags:
+    - security
+
+
+- name: Update Apache Security Config
+  lineinfile:
+    dest: /etc/apache2/conf-enabled/security.conf
+    state: present
+    line: "{{ item }}"
+  with_items:
+    - "ServerSignature Off"
+    - "ServerTokens Prod"
+  when: is_controller is defined and is_controller
+  tags:
+    - security
+    - apache
