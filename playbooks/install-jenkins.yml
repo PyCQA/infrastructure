@@ -17,6 +17,5 @@
   hosts: ci-controllers
   roles:
     - role: jenkins
-      is_controller: true
       upgrading: false
     - role: system-requirements

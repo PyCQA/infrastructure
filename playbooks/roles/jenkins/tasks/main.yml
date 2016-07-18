@@ -16,7 +16,7 @@
 - include: add-apt-repository.yml
   when: >
     is_controller is defined and
-        is_controller and
+        is_controller|bool and
         upgrading is defined and
         not upgrading
 
@@ -24,7 +24,7 @@
 - include: install-service.yml
   when: >
     is_controller is defined and
-        is_controller and
+        is_controller|bool and
         upgrading is defined and
         not upgrading
 
@@ -32,7 +32,7 @@
 - include: upgrade-service.yml
   when: >
     is_controller is defined and
-        is_controller and
+        is_controller|bool and
         upgrading is defined and
         upgrading
 

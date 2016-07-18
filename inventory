@@ -5,8 +5,16 @@ jenkins-build00
 jenkins-controller
 jenkins-build00
 
+
 [ci-controllers]
 jenkins-controller
 
+[ci-controllers:vars]
+is_controller = true
+
+
 [ci-build-nodes]
 jenkins-build00
+
+[ci-build-nodes:vars]
+is_controller = false
