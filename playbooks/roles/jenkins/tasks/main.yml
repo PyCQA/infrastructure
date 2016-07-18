@@ -15,24 +15,24 @@
 
 - include: add-apt-repository.yml
   when: >
-    controller_only is defined and
-        controller_only and
+    is_controller is defined and
+        is_controller and
         upgrading is defined and
         not upgrading
 
 
 - include: install-service.yml
   when: >
-    controller_only is defined and
-        controller_only and
+    is_controller is defined and
+        is_controller and
         upgrading is defined and
         not upgrading
 
 
 - include: upgrade-service.yml
   when: >
-    controller_only is defined and
-        controller_only and
+    is_controller is defined and
+        is_controller and
         upgrading is defined and
         upgrading
 

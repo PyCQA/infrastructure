@@ -17,5 +17,5 @@
   hosts: ci-build-nodes
   roles:
     - role: jenkins
-      controller_only: false
+      is_controller: false
       upgrading: false
