@@ -54,7 +54,7 @@
     src: tmpfs
     name: /run/shm
     fstype: tmpfs
-    opts: ro,noexec,nosuid
+    opts: noexec,nosuid
   tags:
     - security
 
