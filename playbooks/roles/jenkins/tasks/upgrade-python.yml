@@ -15,8 +15,7 @@
 
 - name: "Upgrade Python"
   apt:
-    state: present
-    upgrade: yes
+    state: latest
     name: "{{ item }}"
   with_items: "{{ python_versions }}"
   tags:
