@@ -1,0 +1,23 @@
+- name: "Add Rackspace Cloud Monitoring Apt Key"
+  apt_key:
+    state: present
+    url: "https://monitoring.api.rackspacecloud.com/pki/agent/linux.asc"
+
+- name: "Add Rackspace Cloud Monitoring Archive"
+  lineinfile:
+    state: present
+    create: yes
+    line: >
+      deb http://stable.packages.cloudmonitoring.rackspace.com/ubuntu-14.04-x86_64 cloudmonitoring main
+    dest: /etc/apt/sources.list.d/rackspace-monitoring-agent.list
+
+
+- name: "Update aptitude cache"
+  apt:
+    update_cache: yes
+
+
+- name: "Install Rackspace Monitoring Agent"
+  apt:
+    state: present
+    name: rackspace-monitoring-agent

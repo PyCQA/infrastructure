@@ -18,3 +18,11 @@
     state: present
     name: "{{ item }}"
   with_items: "{{ system_packages }}"
+
+
+- include: install-raxmon.yml
+  when: |
+    hostvars[inventory_hostname]['rackspace'] is defined and
+        hostvars[inventory_hostname]['rackspace']|bool and
+        ansible_distribution == 'Ubuntu' and
+        ansible_distribution_version == '14.04'

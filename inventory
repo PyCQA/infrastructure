@@ -1,5 +1,5 @@
-jenkins-controller
-jenkins-build00
+jenkins-controller  rackspace=true
+jenkins-build00     rackspace=true
 
 [ci-all]
 jenkins-controller
