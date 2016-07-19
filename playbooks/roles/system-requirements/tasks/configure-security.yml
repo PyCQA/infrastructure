@@ -67,7 +67,7 @@
   with_items:
     - "ServerSignature Off"
     - "ServerTokens Prod"
-  when: is_controller is defined and is_controller
+  when: is_controller is defined and is_controller|bool
   tags:
     - security
     - apache
