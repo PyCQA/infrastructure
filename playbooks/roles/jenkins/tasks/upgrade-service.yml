@@ -17,6 +17,8 @@
   apt:
     state: latest
     name: jenkins
+    update_cache: yes
+    cache_valid_time: 3600
   tags:
     - jenkins-controller-upgrade
 
@@ -25,6 +27,8 @@
   apt:
     state: latest
     name: apache2
+    update_cache: yes
+    cache_valid_time: 3600
   tags:
     - jenkins-controller-upgrade
     - apache-upgrade
