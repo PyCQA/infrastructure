@@ -1,7 +1,7 @@
 sudo: false
 language: python
 before_script:
-  - pip install tox
+  - pip install tox==2.3.1
 
 script: tox
 notifications:
