@@ -24,18 +24,9 @@
 
 
 - name: "Add Jenkins source to list"
-  lineinfile:
+  apt_repository:
     state: present
-    create: yes
-    line: "deb http://pkg.jenkins-ci.org/debian-stable binary/"
-    dest: "/etc/apt/sources.list.d/jenkins.list"
-  tags:
-    - jenkins-controller-install
-    - jenkins-apt-setup
-
-
-- name: "Update apt cache"
-  apt:
+    repo: "deb http://pkg.jenkins-ci.org/debian-stable binary/"
     update_cache: yes
   tags:
     - jenkins-controller-install
