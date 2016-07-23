@@ -13,14 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Prepare for upgrade
-  hosts: ci-controllers
-  tasks:
-    - name: Update apt cache
-      apt:
-        update_cache: yes
-
-
 - name: Upgrade Jenkins CI Controller
   hosts: ci-controllers
   roles:
