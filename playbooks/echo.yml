@@ -16,5 +16,5 @@
 - name: Test SSH connectivity
   hosts: ci-all
   tasks:
-    - name: echo | Are you there Server? 
+    - name: echo | Are you there Server?
       ping:
