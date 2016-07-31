@@ -3,7 +3,7 @@ before_script:
   - apt-get install -y python python-dev
   - curl -O https://bootstrap.pypa.io/get-pip.py
   - python get-pip.py
-  - pip install tox
+  - pip install tox==2.3.1
 
 linters:
   script:
