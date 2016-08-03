@@ -16,7 +16,7 @@
 - name: "Add Jenkins CI key to trusted key list"
   apt_key:
     state: present
-    url: "https://jenkins-ci.org/debian/jenkins-ci.org.key"
+    url: "https://pkg.jenkins.io/debian/jenkins-ci.org.key"
     validate_certs: yes
   tags:
     - jenkins-controller-install
